@@ -86,7 +86,7 @@ public class ViewFlow extends AdapterView<Adapter> {
 
         @Override
         public void onGlobalLayout() {
-            getViewTreeObserver().removeGlobalOnLayoutListener(
+            getViewTreeObserver().removeOnGlobalLayoutListener(
                     orientationChangeListener);
             setSelection(mCurrentAdapterIndex);
         }
@@ -798,7 +798,7 @@ public class ViewFlow extends AdapterView<Adapter> {
         mLastObtainedViewWasRecycled = (view == convertView);
         ViewGroup.LayoutParams p = view.getLayoutParams();
         if (p == null) {
-            p = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+            p = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
             view.setLayoutParams(p);
         }
         return view;

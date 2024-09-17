@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 Patrik �kerfeldt
+ * Copyright (C) 2011 Patrik 乲erfeldt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,32 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.xinglan.webdavserver.example;
+package com.xinglan.webdavserver;
+
+import com.xinglan.webdavserver.viewflow.TitleFlowIndicator;
+import com.xinglan.webdavserver.viewflow.ViewFlow;
 
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import com.xinglan.webdavserver.R;
-import com.xinglan.webdavserver.viewflow.TitleFlowIndicator;
-import com.xinglan.webdavserver.viewflow.ViewFlow;
+
+import androidx.annotation.NonNull;
 
 public class TitleViewFlowExample extends Activity {
 
     private ViewFlow viewFlow;
 
-    /**
-     * Called when the activity is first created.
-     */
+    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.title_title);
-        setContentView(R.layout.title_layout);
+        setContentView(R.layout.circle_layout);
 
-        viewFlow = (ViewFlow) findViewById(R.id.viewflow);
+        viewFlow = findViewById(R.id.view_flow);
         AndroidVersionAdapter adapter = new AndroidVersionAdapter(this);
-        viewFlow.setAdapter(adapter, 3);
-        TitleFlowIndicator indicator = (TitleFlowIndicator) findViewById(R.id.viewflowindic);
+        viewFlow.setAdapter(adapter,0);
+        TitleFlowIndicator indicator = findViewById(R.id.view_flow_indic);
         indicator.setTitleProvider(adapter);
         viewFlow.setFlowIndicator(indicator);
 
@@ -46,7 +46,7 @@ public class TitleViewFlowExample extends Activity {
 
     /* If your min SDK version is < 8 you need to trigger the onConfigurationChanged in ViewFlow manually, like this */
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         viewFlow.onConfigurationChanged(newConfig);
     }

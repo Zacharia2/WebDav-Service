@@ -15,7 +15,6 @@
  */
 package com.xinglan.webdavserver.viewflow;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -57,6 +56,7 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
     private TitleProvider titleProvider = null;
     private int currentPosition = 0;
     private Paint paintText;
+    private Path path;
     private Paint paintSelected;
     private Paint paintFooterLine;
     private Paint paintFooterTriangle;
@@ -77,15 +77,10 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
         initDraw(TEXT_COLOR, TEXT_SIZE, SELECTED_COLOR, SELECTED_BOLD, TEXT_SIZE, FOOTER_LINE_HEIGHT, FOOTER_COLOR);
     }
 
-    /**
-     * The contructor used with an inflater
-     *
-     * @param context
-     * @param attrs
-     */
+
     public TitleFlowIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // Retrieve styles attributs
+        // Retrieve styles attributes
 
         int typefaceIndex = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "typeface", 0);
         int textStyleIndex = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", 0);
@@ -222,7 +217,8 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
         }
 
         // Draw the footer line
-        @SuppressLint("DrawAllocation") Path path = new Path();
+        // Draw the footer line
+        path = new Path();
         int coordY = getHeight() - 1;
         coordY -= (int) ((footerLineHeight % 2 == 1) ? footerLineHeight / 2 : footerLineHeight / 2 - 1);
         path.moveTo(0, coordY);
@@ -263,10 +259,6 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
 
     /**
      * Calculate views bounds and scroll them according to the current index
-     *
-     * @param paint
-     * @param currentIndex
-     * @return
      */
     private ArrayList<Rect> calculateAllBounds(Paint paint) {
         ArrayList<Rect> list = new ArrayList<Rect>();
@@ -288,10 +280,6 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
 
     /**
      * Calculate the bounds for a view's title
-     *
-     * @param index
-     * @param paint
-     * @return
      */
     private Rect calcBounds(int index, Paint paint) {
         // Get the title
@@ -305,9 +293,6 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
 
     /**
      * Returns the title
-     *
-     * @param pos
-     * @return
      */
     private String getTitle(int pos) {
         // Set the default title
@@ -319,38 +304,19 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
         return title;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.xinglan.webdavserver.viewflow.FlowIndicator#onScrolled(int, int, int,
-     * int)
-     */
     @Override
     public void onScrolled(int h, int v, int oldh, int oldv) {
         currentScroll = h;
         invalidate();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * com.xinglan.webdavserver.viewflow.ViewFlow.ViewSwitchListener#onSwitched(android
-     * .view.View, int)
-     */
     @Override
     public void onSwitched(View view, int position) {
         currentPosition = position;
         invalidate();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * com.xinglan.webdavserver.viewflow.FlowIndicator#setViewFlow(org.taptwo.android
-     * .widget.ViewFlow)
-     */
+
     @Override
     public void setViewFlow(ViewFlow view) {
         viewFlow = view;
@@ -360,8 +326,6 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
 
     /**
      * Set the title provider
-     *
-     * @param provider
      */
     public void setTitleProvider(TitleProvider provider) {
         titleProvider = provider;

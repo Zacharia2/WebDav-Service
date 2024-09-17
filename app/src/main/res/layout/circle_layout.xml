@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.xinglan.webdavserver.viewflow.CircleFlowIndicator
-        android:id="@+id/viewflowindic"
+        android:id="@+id/view_flow_indic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -15,7 +15,7 @@
         app:inactiveType="fill" />
 
     <com.xinglan.webdavserver.viewflow.ViewFlow
-        android:id="@+id/viewflow"
+        android:id="@+id/view_flow"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         app:sidebuffer="3" />

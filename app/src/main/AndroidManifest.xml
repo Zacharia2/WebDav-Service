@@ -23,27 +23,8 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".example.CircleViewFlowExample"
+            android:name="TitleViewFlowExample"
             android:label="@string/app_name"
-            android:configChanges="orientation">
-        </activity>
-        <activity
-            android:name=".example.TitleViewFlowExample"
-            android:label="@string/app_name"
-            android:configChanges="orientation">
-        </activity>
-
-        <activity
-            android:name=".example.DiffViewFlowExample"
-            android:label="@string/app_name"
-            android:configChanges="orientation">
-        </activity>
-        <activity
-            android:name=".example.AsyncDataFlowExample"
-            android:label="@string/app_name"
-            android:configChanges="orientation">
-        </activity>
-        <activity android:name=".example.ViewFlowExample"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

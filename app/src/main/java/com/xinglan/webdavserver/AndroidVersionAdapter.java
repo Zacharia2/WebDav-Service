@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.xinglan.webdavserver.example;
+package com.xinglan.webdavserver;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -22,12 +22,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.viewflow.TitleProvider;
 
 public class AndroidVersionAdapter extends BaseAdapter implements TitleProvider {
 
-    private LayoutInflater mInflater;
+    private final LayoutInflater mInflater;
 
     private static final String[] versions = {"1.5", "1.6", "2.1", "2.2", "2.3", "3.0", "x.y"};
     private static final String[] names = {"Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb", "IceCream Sandwich"};
