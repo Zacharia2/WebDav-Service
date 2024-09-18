@@ -26,7 +26,7 @@ import com.xinglan.webdavserver.corefunc.Helper;
 import com.xinglan.webdavserver.utils.CustomResultReceiver;
 import com.xinglan.webdavserver.utils.Net;
 import com.xinglan.webdavserver.utils.ServiceServer;
-import com.xinglan.webdavserver.utils.WebdavService;
+import com.xinglan.webdavserver.intent.WebdavService;
 import com.xinglan.webdavserver.widget.viewflow.ViewFlow;
 
 public abstract class MainActivity extends AboutActivity implements CustomResultReceiver.Receiver {

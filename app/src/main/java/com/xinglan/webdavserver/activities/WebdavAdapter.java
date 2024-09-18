@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.utils;
+package com.xinglan.webdavserver.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;

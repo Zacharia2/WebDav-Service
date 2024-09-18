@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.utils;
+package com.xinglan.webdavserver.intent;
 
 import android.app.Service;
 import android.content.Intent;
@@ -10,24 +10,13 @@ import android.os.ResultReceiver;
 import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
+import com.xinglan.webdavserver.utils.ServiceServer;
 
 public class WebdavService extends ServiceServer {
     private static BerryUtil server = null;
 
-    public static class WebdavBinder extends Binder {
-        public String configurationString;
-
-        public WebdavBinder() {
-            this.configurationString = null;
-        }
-
-        public BerryUtil getServer() {
-            return WebdavService.server;
-        }
-
-        public void setServer(BerryUtil par) {
-            WebdavService.server = par;
-        }
+    public static BerryUtil getServer() {
+        return server;
     }
 
     @Override // com.xinglan.webdavserver.utilities.ServiceServer
@@ -89,7 +78,19 @@ public class WebdavService extends ServiceServer {
         }
     }
 
-    public static BerryUtil getServer() {
-        return server;
+    public static class WebdavBinder extends Binder {
+        public String configurationString;
+
+        public WebdavBinder() {
+            this.configurationString = null;
+        }
+
+        public BerryUtil getServer() {
+            return WebdavService.server;
+        }
+
+        public void setServer(BerryUtil par) {
+            WebdavService.server = par;
+        }
     }
 }

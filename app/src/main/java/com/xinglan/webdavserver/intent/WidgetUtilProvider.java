@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.lib;
+package com.xinglan.webdavserver.intent;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

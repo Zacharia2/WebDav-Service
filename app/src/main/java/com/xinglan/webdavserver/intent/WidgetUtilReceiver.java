@@ -1,4 +1,4 @@
-package com.xinglan.webdavserver.lib;
+package com.xinglan.webdavserver.intent;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -10,7 +10,7 @@ import android.widget.RemoteViews;
 
 import com.xinglan.webdavserver.R;
 
-public abstract class WidgetUtilIntentReceiver extends BroadcastReceiver {
+public abstract class WidgetUtilReceiver extends BroadcastReceiver {
     /* JADX INFO: Access modifiers changed from: protected */
     public void onWidgetClick(Context context, Class<?> widgetProvider, String receiveAction, String receiveActionUpdate, int image, String sendAction) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widgetutil);

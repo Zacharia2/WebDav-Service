@@ -6,11 +6,10 @@ import android.widget.LinearLayout;
 
 import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.corefunc.BerryUtil;
-import com.xinglan.webdavserver.lib.WidgetWebDavProIntentReceiver;
-import com.xinglan.webdavserver.utils.WebdavAdapter;
+import com.xinglan.webdavserver.intent.WidgetWebDavReceiver;
 import com.xinglan.webdavserver.widget.viewflow.TitleFlowIndicator;
 
-public class WebdavServerProActivity extends MainActivity {
+public class WebdavServerActivity extends MainActivity {
     @Override // com.xinglan.webdavserver.webdavserverlib.MainActivity, android.app.Activity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +33,6 @@ public class WebdavServerProActivity extends MainActivity {
 
     @Override // com.xinglan.webdavserver.webdavserverlib.MainActivity
     protected String getUpdateWidgetAction() {
-        return WidgetWebDavProIntentReceiver.UpdateStatusAction;
+        return WidgetWebDavReceiver.UpdateStatusAction;
     }
 }
