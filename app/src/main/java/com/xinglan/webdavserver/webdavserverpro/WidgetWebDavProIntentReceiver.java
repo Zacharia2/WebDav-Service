@@ -2,9 +2,13 @@ package com.xinglan.webdavserver.webdavserverpro;
 
 import android.content.Context;
 import android.content.Intent;
+
+import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.andromilton.BerryUtil;
 import com.xinglan.webdavserver.webdavserverlib.WebdavService;
 import com.xinglan.webdavserver.widgetutil.WidgetUtilIntentReceiver;
+
+import java.util.Objects;
 
 public class WidgetWebDavProIntentReceiver extends WidgetUtilIntentReceiver {
     public static final String ChangeStatusAction = "com.xinglan.webdavserver.webdavserverpro.widget.action.CHANGE_STATUS";
@@ -12,26 +16,26 @@ public class WidgetWebDavProIntentReceiver extends WidgetUtilIntentReceiver {
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        int image = bin.mt.plus.TranslationData.R.drawable.on;
+        int image = R.mipmap.on;
         BerryUtil server = WebdavService.getServer();
-        if (intent.getAction().equals(ChangeStatusAction)) {
+        if (Objects.equals(intent.getAction(), ChangeStatusAction)) {
             if (server != null) {
-                image = bin.mt.plus.TranslationData.R.drawable.off;
+                image = R.mipmap.off;
             }
-            String sendAction = server != null ? "com.theolivetree.webdavserver.StopWebDavServerPro" : "com.theolivetree.webdavserver.StartWebDavServerPro";
+            String sendAction = server != null ? "com.xinglan.webdavserver.StopWebDavServerPro" : "com.xinglan.webdavserver.StartWebDavServerPro";
             onWidgetClick(context, WidgetWebDavProProvider.class, ChangeStatusAction, UpdateStatusAction, image, sendAction);
             return;
         }
-        if (intent.getAction().equals(UpdateStatusAction)) {
+        if (Objects.equals(intent.getAction(), UpdateStatusAction)) {
             if (server == null) {
-                image = bin.mt.plus.TranslationData.R.drawable.off;
+                image = R.mipmap.off;
             }
             onWidgetUpdate(context, WidgetWebDavProProvider.class, ChangeStatusAction, image);
             boolean startedFromWidget = intent.getBooleanExtra("startedFromWidget", false);
             boolean serviceStartOk = intent.getBooleanExtra("serviceStartOk", true);
             if (server == null && startedFromWidget && !serviceStartOk) {
-                Intent i = new Intent(context, (Class<?>) WebdavserverproActivity.class);
-                i.addFlags(268435456);
+                Intent i = new Intent(context, WebdavserverproActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("startFromWidgetError", true);
                 context.startActivity(i);
             }

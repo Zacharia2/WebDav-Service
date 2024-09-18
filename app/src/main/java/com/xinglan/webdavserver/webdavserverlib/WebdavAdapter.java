@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import org.taptwo.android.widget.TitleProvider;
+
+import com.xinglan.webdavserver.R;
+import com.xinglan.webdavserver.viewflow.TitleProvider;
 
 public class WebdavAdapter extends BaseAdapter implements TitleProvider {
     private static final int VIEW1 = 0;
@@ -22,7 +24,7 @@ public class WebdavAdapter extends BaseAdapter implements TitleProvider {
         this.res2 = 2;
         this.res1 = inflateRes1;
         this.res2 = inflateRes2;
-        this.mInflater = (LayoutInflater) context.getSystemService("layout_inflater");
+        this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.context = context;
     }
 

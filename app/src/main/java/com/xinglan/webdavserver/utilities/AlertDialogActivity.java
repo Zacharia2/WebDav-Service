@@ -18,7 +18,6 @@ public class AlertDialogActivity extends Activity {
         this.title = parTitle;
         this.message = parMessage;
         this.listener = parListener;
-        this.listener = parListener;
         this.listenerCancel = parListenerCancel;
     }
 

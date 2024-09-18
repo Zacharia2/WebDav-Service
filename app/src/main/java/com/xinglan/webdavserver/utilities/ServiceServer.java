@@ -7,7 +7,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
 
@@ -33,7 +32,7 @@ public abstract class ServiceServer extends Service {
     @Override // android.app.Service
     public void onCreate() {
         super.onCreate();
-        this.notifyManager = (NotificationManager) getSystemService("notification");
+        this.notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     @Override // android.app.Service
@@ -53,20 +52,20 @@ public abstract class ServiceServer extends Service {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void ensureNotificationCancelled() {
-        ((NotificationManager) getSystemService("notification")).cancel(1);
+        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(1);
     }
 
     protected void getScreenLock(String tag) {
         if (tag != null) {
-            PowerManager pm = (PowerManager) getSystemService("power");
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
             this.wakeLock = pm.newWakeLock(6, tag);
-            this.wakeLock.acquire();
+            this.wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/);
         }
     }
 
     protected void getWifiLock(int lockType, String tag) {
         if (tag != null) {
-            WifiManager wm = (WifiManager) getSystemService("wifi");
+            WifiManager wm = (WifiManager) getSystemService(Context.WIFI_SERVICE);
             this.wifiLock = wm.createWifiLock(lockType, tag);
             this.wifiLock.acquire();
         }
@@ -107,18 +106,9 @@ public abstract class ServiceServer extends Service {
         Notification notification;
         Intent startIntent = new Intent();
         startIntent.setClassName(this, className);
-        startIntent.setFlags(536870912);
-        PendingIntent intent = PendingIntent.getActivity(this, 0, startIntent, 268435456);
-        if (Build.VERSION.SDK_INT < 16) {
-            if (Build.VERSION.SDK_INT >= 11) {
-                notification = new Notification.Builder(this).setTicker(getString(notificationTextId)).setContentTitle(getString(notificationStartedTitleId)).setContentText(ipDetail).setSmallIcon(notificationIconId).setContentIntent(intent).setWhen(System.currentTimeMillis()).getNotification();
-            } else {
-                notification = new Notification(notificationIconId, getString(notificationTextId), System.currentTimeMillis());
-                notification.setLatestEventInfo(this, getString(notificationStartedTitleId), ipDetail, intent);
-            }
-        } else {
-            notification = new Notification.BigTextStyle(new Notification.Builder(this).setTicker(getString(notificationTextId)).setContentTitle(getString(notificationStartedTitleId)).setContentText(ipDetail).setSmallIcon(notificationIconId).setContentIntent(intent)).bigText(ipDetail).build();
-        }
+        startIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent intent = PendingIntent.getActivity(this, 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        notification = new Notification.BigTextStyle(new Notification.Builder(this).setTicker(getString(notificationTextId)).setContentTitle(getString(notificationStartedTitleId)).setContentText(ipDetail).setSmallIcon(notificationIconId).setContentIntent(intent)).bigText(ipDetail).build();
         notification.flags |= 34;
         if (startForeground) {
             startForeground(1, notification);
@@ -130,9 +120,7 @@ public abstract class ServiceServer extends Service {
     public static void updateWidgets(Context context, String updateAction, boolean startedFromWidget, boolean startOk) {
         Intent intentUpdate = new Intent();
         intentUpdate.setAction(updateAction);
-        if (Build.VERSION.SDK_INT >= 12) {
-            intentUpdate.addFlags(32);
-        }
+        intentUpdate.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         intentUpdate.putExtra("startedFromWidget", startedFromWidget);
         intentUpdate.putExtra("serviceStartOk", startOk);
         context.sendBroadcast(intentUpdate);

@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+
+import org.apache.log4j.Priority;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Random;
-import org.apache.log4j.Priority;
 
 public class Net {
     public static final int ADDR_ALL = 255;
@@ -103,7 +105,7 @@ public class Net {
     }
 
     public static String getWifiIpAddress(Context context) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService("wifi");
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ip = wifiInfo.getIpAddress();
         if (ip == 0) {
@@ -124,10 +126,7 @@ public class Net {
                 while (true) {
                     int n = reader.read(buffer);
                     if (n == -1) {
-                        try {
-                            break;
-                        } catch (IOException e) {
-                        }
+                        break;
                     } else {
                         writer.write(buffer, 0, n);
                     }
@@ -176,7 +175,7 @@ public class Net {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
-        alertDialog.setPositiveButton(ok, listener != null ? listener : new DialogInterface.OnClickListener() { 
+        alertDialog.setPositiveButton(ok, listener != null ? listener : new DialogInterface.OnClickListener() {
             @Override // android.content.DialogInterface.OnClickListener
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -184,7 +183,7 @@ public class Net {
         });
         if (cancel != -1) {
             if (listener == null) {
-                listener = new DialogInterface.OnClickListener() { 
+                listener = new DialogInterface.OnClickListener() {
                     @Override // android.content.DialogInterface.OnClickListener
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -200,7 +199,7 @@ public class Net {
     }
 
     public static boolean isServiceRunning(Context context, String packageName, String className) {
-        ActivityManager activityManager = (ActivityManager) context.getSystemService("activity");
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> services = activityManager.getRunningServices(Priority.OFF_INT);
         for (int i = 0; i < services.size(); i++) {
             ActivityManager.RunningServiceInfo serviceInfo = services.get(i);

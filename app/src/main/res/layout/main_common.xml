@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:id="@+id/mainParent"
-    android:background="@drawable/bg_gradient"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_background"
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <TextView
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center"
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:text="@string/str_start"/>
+                android:gravity="center_horizontal"
+                android:text="@string/str_start"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:id="@+id/imageView1"
-                android:focusable="true"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/off"
+                android:layout_gravity="center_horizontal"
+                android:focusable="true"
+                android:onClick="startStopClickHandler"
                 android:scaleType="fitXY"
-                android:onClick="startStopClickHandler"/>
+                android:src="@mipmap/off" />
+
             <TextView
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:gravity="center"
-                android:layout_gravity="center"
                 android:id="@+id/textView2"
-                android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:text="@string/str_server_conf"/>
+                android:gravity="center"
+                android:text="@string/str_server_conf"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="invisible" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

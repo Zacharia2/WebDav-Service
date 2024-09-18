@@ -3,13 +3,14 @@ package com.xinglan.webdavserver.webdavserverlib;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
 import com.xinglan.webdavserver.andromilton.BerryUtil;
 import com.xinglan.webdavserver.utilities.ServiceServer;
 
 public abstract class StopWebDavServerLib extends BroadcastReceiver {
     public void onReceiveImplementation(Context context, Intent intent, String widgetUpdateAction) {
         try {
-            Intent intentServer = new Intent(WebdavserverApp.getAppContext(), (Class<?>) WebdavService.class);
+            Intent intentServer = new Intent(WebdavserverApp.getAppContext(), WebdavService.class);
             BerryUtil server = WebdavService.getServer();
             if (server != null) {
                 if (server.isStarted()) {

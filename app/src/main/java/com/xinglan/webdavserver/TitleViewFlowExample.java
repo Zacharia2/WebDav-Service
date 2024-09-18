@@ -62,7 +62,7 @@ public class TitleViewFlowExample extends Activity {
 
 }
 
-public class AndroidVersionAdapter extends BaseAdapter implements TitleProvider {
+class AndroidVersionAdapter extends BaseAdapter implements TitleProvider {
 
     private final LayoutInflater mInflater;
 

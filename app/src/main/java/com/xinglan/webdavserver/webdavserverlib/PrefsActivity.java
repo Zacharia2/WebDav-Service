@@ -1,12 +1,13 @@
 package com.xinglan.webdavserver.webdavserverlib;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+
 import com.xinglan.webdavserver.FileDialog;
+import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.utilities.FileUtil;
 
 /* loaded from: classes.dex */
@@ -14,27 +15,23 @@ public class PrefsActivity extends PreferenceActivity {
     public static final int PREFERENCE_ACTIVITY = 0;
     public static final int PREF_RESULT_NONE = 1;
     public static final int PREF_RESULT_RESET = 2;
-    private Preference.OnPreferenceChangeListener onPasswordEnabledChange = new Preference.OnPreferenceChangeListener() { 
-        @Override // android.preference.Preference.OnPreferenceChangeListener
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            try {
-                PrefsActivity.this.setEnableDisablePassword(preference, Boolean.valueOf(newValue.toString()).booleanValue());
-                return true;
-            } catch (Exception e) {
-                return true;
-            }
+    // android.preference.Preference.OnPreferenceChangeListener
+    private final Preference.OnPreferenceChangeListener onPasswordEnabledChange = (preference, newValue) -> {
+        try {
+            PrefsActivity.this.setEnableDisablePassword(preference, Boolean.parseBoolean(newValue.toString()));
+            return true;
+        } catch (Exception e) {
+            return true;
         }
     };
-    private Preference.OnPreferenceChangeListener onHomeDirChange = new Preference.OnPreferenceChangeListener() { 
-        @Override // android.preference.Preference.OnPreferenceChangeListener
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            try {
-                Preference homeDirPref = PrefsActivity.this.findPreference(Prefs.PREF_CUSTOMFOLDER);
-                homeDirPref.setEnabled(Prefs.isHomeDirCustomDir(WebdavserverApp.getAppContext(), Integer.valueOf(newValue.toString()).intValue()));
-                return true;
-            } catch (Exception e) {
-                return true;
-            }
+    // android.preference.Preference.OnPreferenceChangeListener
+    private final Preference.OnPreferenceChangeListener onHomeDirChange = (preference, newValue) -> {
+        try {
+            Preference homeDirPref = PrefsActivity.this.findPreference(Prefs.PREF_CUSTOMFOLDER);
+            homeDirPref.setEnabled(Prefs.isHomeDirCustomDir(WebdavserverApp.getAppContext(), Integer.parseInt(newValue.toString())));
+            return true;
+        } catch (Exception e) {
+            return true;
         }
     };
 
@@ -48,26 +45,18 @@ public class PrefsActivity extends PreferenceActivity {
         if (FileUtil.GetSecondaryPrivateDirectory(WebdavserverApp.getAppContext()) != null) {
             entries = getResources().getStringArray(R.array.home_dir_api19);
             entryValues = getResources().getStringArray(R.array.home_dir_values_api19);
-        } else if (Build.VERSION.SDK_INT >= 8) {
+        } else {
             entries = getResources().getStringArray(R.array.home_dir_api8);
             entryValues = getResources().getStringArray(R.array.home_dir_values_api8);
-        } else {
-            entries = getResources().getStringArray(R.array.home_dir);
-            entryValues = getResources().getStringArray(R.array.home_dir_values);
         }
         homeDirPref.setEntries(entries);
         homeDirPref.setEntryValues(entryValues);
         homeDirPref.setOnPreferenceChangeListener(this.onHomeDirChange);
         ListPreference lockPref = (ListPreference) findPreference(Prefs.PREF_LOCK);
-        if (Build.VERSION.SDK_INT >= 12) {
-            lockPref.setEntries(R.array.lock_api12);
-            lockPref.setEntryValues(R.array.lock_values_api12);
-        } else {
-            lockPref.setEntries(R.array.lock);
-            lockPref.setEntryValues(R.array.lock_values);
-        }
+        lockPref.setEntries(R.array.lock_api12);
+        lockPref.setEntryValues(R.array.lock_values_api12);
         Preference customPref = findPreference(Prefs.PREF_RESETPREFS);
-        customPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() { 
+        customPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override // android.preference.Preference.OnPreferenceClickListener
             public boolean onPreferenceClick(Preference pref) {
                 Intent resultIntent = new Intent();
@@ -79,16 +68,14 @@ public class PrefsActivity extends PreferenceActivity {
         setEnableDisablePassword(findPreference(Prefs.PREF_PASSWORD), Prefs.getPasswordEnabled(WebdavserverApp.getAppContext()));
         setPreferenceChangeListener(Prefs.PREF_PASSWORD, this.onPasswordEnabledChange);
         Preference customFolderPref = findPreference(Prefs.PREF_CUSTOMFOLDER);
-        customFolderPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() { 
-            @Override // android.preference.Preference.OnPreferenceClickListener
-            public boolean onPreferenceClick(Preference pref) {
-                Intent intent = new Intent(PrefsActivity.this.getBaseContext(), (Class<?>) FileDialog.class);
-                intent.putExtra(FileDialog.START_PATH, Prefs.getCustomFolder(WebdavserverApp.getAppContext()));
-                intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
-                intent.putExtra(FileDialog.SHOW_FOLDERS_ONLY, true);
-                PrefsActivity.this.startActivityForResult(intent, 1);
-                return false;
-            }
+        // android.preference.Preference.OnPreferenceClickListener
+        customFolderPref.setOnPreferenceClickListener(pref -> {
+            Intent intent = new Intent(PrefsActivity.this.getBaseContext(), FileDialog.class);
+            intent.putExtra(FileDialog.START_PATH, Prefs.getCustomFolder(WebdavserverApp.getAppContext()));
+            intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
+            intent.putExtra(FileDialog.SHOW_FOLDERS_ONLY, true);
+            PrefsActivity.this.startActivityForResult(intent, 1);
+            return false;
         });
         String currentCustomFolder = Prefs.getCustomFolder(WebdavserverApp.getAppContext());
         customFolderPref.setSummary(currentCustomFolder);

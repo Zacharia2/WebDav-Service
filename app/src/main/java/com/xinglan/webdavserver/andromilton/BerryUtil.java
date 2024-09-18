@@ -9,6 +9,7 @@ import com.ettrema.common.Service;
 import com.ettrema.http.fs.FileSystemResourceFactory;
 import com.ettrema.http.fs.SimpleLockManager;
 import com.xinglan.webdavserver.webdavserverlib.Prefs;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class BerryUtil {
             List<Service> httpAdapters = new ArrayList<>();
             Http11ResponseHandler responseHandler = httpManager.getResponseHandler();
             SimpletonServer simpletonServer = new SimpletonServer(responseHandler);
-            simpletonServer.setHttpPort(Integer.valueOf(port));
+            simpletonServer.setHttpPort(port);
             httpAdapters.add(simpletonServer);
             this.berry = new Berry(httpManager, httpAdapters);
             this.berry.start();

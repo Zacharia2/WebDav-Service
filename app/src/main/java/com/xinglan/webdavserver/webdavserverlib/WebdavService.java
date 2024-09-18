@@ -1,21 +1,23 @@
 package com.xinglan.webdavserver.webdavserverlib;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.ResultReceiver;
+
+import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.andromilton.BerryUtil;
 import com.xinglan.webdavserver.utilities.ServiceServer;
 
 public class WebdavService extends ServiceServer {
     private static BerryUtil server = null;
 
-    public class WebdavBinder extends Binder {
+    public static class WebdavBinder extends Binder {
         public String configurationString;
 
         public WebdavBinder() {
-            this.configurationString = null;
             this.configurationString = null;
         }
 
@@ -47,7 +49,7 @@ public class WebdavService extends ServiceServer {
         boolean passwordEnabled = intent.getBooleanExtra("sticky_passwordEnabled", false);
         String userName = intent.getStringExtra("sticky_userName");
         String userPass = intent.getStringExtra("sticky_userPass");
-        ResultReceiver receiver = (ResultReceiver) intent.getParcelableExtra("sticky_resultReceiver");
+        ResultReceiver receiver = intent.getParcelableExtra("sticky_resultReceiver");
         String widgetUpdateAction = intent.getStringExtra("widgetUpdateAction");
         boolean startedFromWidget = intent.getBooleanExtra("startedFromWidget", false);
         try {
@@ -65,7 +67,7 @@ public class WebdavService extends ServiceServer {
             if (widgetUpdateAction != null) {
                 updateWidgets(this, widgetUpdateAction, startedFromWidget, false);
             }
-            return 2;
+            return Service.START_NOT_STICKY;
         }
         if (receiver != null) {
             Bundle b2 = new Bundle();
@@ -74,8 +76,8 @@ public class WebdavService extends ServiceServer {
         if (widgetUpdateAction != null) {
             updateWidgets(this, widgetUpdateAction, startedFromWidget, true);
         }
-        handleStart(intent, flags, startId, R.string.service_started, R.drawable.on, R.string.notification_started_title, R.string.notification_started_text);
-        return 3;
+        handleStart(intent, flags, startId, R.string.service_started, R.mipmap.on, R.string.notification_started_title, R.string.notification_started_text);
+        return Service.START_REDELIVER_INTENT;
     }
 
     @Override // com.xinglan.webdavserver.utilities.ServiceServer, android.app.Service

@@ -6,8 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.widget.RemoteViews;
+
+import com.xinglan.webdavserver.R;
 
 public abstract class WidgetUtilIntentReceiver extends BroadcastReceiver {
     /* JADX INFO: Access modifiers changed from: protected */
@@ -21,9 +22,7 @@ public abstract class WidgetUtilIntentReceiver extends BroadcastReceiver {
         WidgetUtilProvider.pushAllWidgetUpdate(context.getApplicationContext(), remoteViews, widgetProvider);
         Intent intent = new Intent();
         intent.setAction(sendAction);
-        if (Build.VERSION.SDK_INT >= 12) {
-            intent.addFlags(32);
-        }
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         intent.putExtra("startedFromWidget", true);
         context.sendBroadcast(intent);
     }

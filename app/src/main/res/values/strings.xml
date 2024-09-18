@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">WebdavServer</string>
-    <string name="hello">Hello World, ViewFlowExample!</string>
-    <string name="title_title">TitleFlowIndicator</string>
-
+    <string name="hello" translatable="false">Hello World, ViewFlowExample!</string>
+    <string name="title_title" translatable="false">TitleFlowIndicator</string>
     <string name="app_name_file_dialog">File dialog</string>
     <string name="location">Location</string>
     <string name="cant_read_folder">folder can\'t be read!</string>
@@ -14,7 +13,6 @@
     <string name="create">Save</string>
     <string name="no_data">No Data</string>
     <string name="err">Error</string>
-    <string name="app_name">WebDAV server Pro</string>
     <string name="str_start">Press button to start WebDAV server</string>
     <string name="str_stop">Press button to stop WebDAV server</string>
     <string name="str_server_conf">WebDAV server available on:</string>

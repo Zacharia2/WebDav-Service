@@ -82,7 +82,9 @@ public class ViewFlow extends AdapterView<Adapter> {
         super(context);
         mSideBuffer = 3;
         init();
-    }    private final OnGlobalLayoutListener orientationChangeListener = new OnGlobalLayoutListener() {
+    }
+
+    private final OnGlobalLayoutListener orientationChangeListener = new OnGlobalLayoutListener() {
 
         @Override
         public void onGlobalLayout() {

@@ -18,16 +18,19 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.utilities.CustomResultReceiver;
 import com.xinglan.webdavserver.utilities.Net;
 import com.xinglan.webdavserver.utilities.ServiceServer;
-import com.xinglan.webdavserver.webdavserverlib.WebdavService;
 import com.xinglan.webdavserver.viewflow.ViewFlow;
 
 public abstract class MainActivity extends AboutActivity implements CustomResultReceiver.Receiver {
     private CustomResultReceiver mReceiver;
     protected ViewFlow viewFlow = null;
-    private ServiceConnection mConnection = new ServiceConnection() { 
+    private final ServiceConnection mConnection = new ServiceConnection() {
         @Override // android.content.ServiceConnection
         public void onServiceConnected(ComponentName className, IBinder service) {
             WebdavService.WebdavBinder serviceBinder = (WebdavService.WebdavBinder) service;
@@ -68,7 +71,7 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
         super.onStart();
         this.mReceiver = new CustomResultReceiver(new Handler());
         this.mReceiver.setReceiver(this);
-        if (!bindService(new Intent(this, (Class<?>) WebdavService.class), this.mConnection, 0) || WebdavService.getServer() == null) {
+        if (!bindService(new Intent(this, WebdavService.class), this.mConnection, 0) || WebdavService.getServer() == null) {
             setViewsStopped();
         }
     }
@@ -108,7 +111,7 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
     }
 
     @Override // android.app.Activity, android.content.ComponentCallbacks
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         this.viewFlow.onConfigurationChanged(newConfig);
     }
@@ -124,7 +127,7 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.menu_preference) {
-            Intent intent = new Intent(this, (Class<?>) PrefsActivity.class);
+            Intent intent = new Intent(this, PrefsActivity.class);
             startActivityForResult(intent, 0);
             return true;
         }
@@ -136,24 +139,17 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
         if (keyCode != 82) {
             return super.onKeyDown(keyCode, event);
         }
-        startActivityForResult(new Intent(this, (Class<?>) PrefsActivity.class), 0);
+        startActivityForResult(new Intent(this, PrefsActivity.class), 0);
         return true;
     }
 
     @Override // android.app.Activity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 0:
-                switch (resultCode) {
-                    case 2:
-                        setDefaultValues(true);
-                        return;
-                    default:
-                        return;
-                }
-            default:
-                return;
+        if (requestCode == 0) {
+            if (resultCode == 2) {
+                setDefaultValues(true);
+            }
         }
     }
 
@@ -167,7 +163,7 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
     protected void setDefaultValues(boolean readAgain) {
         if (readAgain) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            prefs.edit().clear().commit();
+            prefs.edit().clear().apply();
         }
         PreferenceManager.setDefaultValues(this, R.xml.preference, readAgain);
     }
@@ -176,7 +172,7 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
         try {
             Context context = WebdavserverApp.getAppContext();
             if (Helper.StartService(context, getClass(), this.mReceiver, updateWidgetAction, false)) {
-                bindService(new Intent(context, (Class<?>) WebdavService.class), this.mConnection, 0);
+                bindService(new Intent(context, WebdavService.class), this.mConnection, 0);
             } else {
                 Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.notConnect, null, null);
             }
@@ -187,29 +183,28 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
 
     public void stopClickHandler(String updateWidgetAction) {
         setViewsStopped();
-        Intent intent = new Intent(this, (Class<?>) WebdavService.class);
+        Intent intent = new Intent(this, WebdavService.class);
         stopService(intent);
         ServiceServer.updateWidgets(getApplicationContext(), updateWidgetAction, false, true);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setViewsStarted(String connectString) {
-        ImageView button = (ImageView) findViewById(R.id.imageView1);
-        TextView textStartStop = (TextView) findViewById(R.id.textView3);
-        TextView text2 = (TextView) findViewById(R.id.textView2);
+
+    private void setViewsStarted(String connectString) {
+        ImageView button = findViewById(R.id.imageView1);
+        TextView textStartStop = findViewById(R.id.textView3);
+        TextView text2 = findViewById(R.id.textView2);
         text2.setText(connectString);
-        button.setImageResource(R.drawable.on);
+        button.setImageResource(R.mipmap.on);
         textStartStop.setText(R.string.str_stop);
-        text2.setVisibility(0);
+        text2.setVisibility(View.VISIBLE);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setViewsStopped() {
-        ImageView button = (ImageView) findViewById(R.id.imageView1);
-        TextView textStartStop = (TextView) findViewById(R.id.textView3);
-        TextView text2 = (TextView) findViewById(R.id.textView2);
-        button.setImageResource(R.drawable.off);
+    private void setViewsStopped() {
+        ImageView button = findViewById(R.id.imageView1);
+        TextView textStartStop = findViewById(R.id.textView3);
+        TextView text2 = findViewById(R.id.textView2);
+        button.setImageResource(R.mipmap.off);
         textStartStop.setText(R.string.str_start);
-        text2.setVisibility(4);
+        text2.setVisibility(View.INVISIBLE);
     }
 }

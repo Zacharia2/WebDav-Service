@@ -2,22 +2,26 @@ package com.xinglan.webdavserver.webdavserverlib;
 
 import android.content.Context;
 import android.content.Intent;
+
 import com.bradmcevoy.http.SecurityManager;
 import com.ettrema.http.fs.NullSecurityManager;
 import com.ettrema.http.fs.SimpleSecurityManager;
+import com.xinglan.webdavserver.R;
 import com.xinglan.webdavserver.andromilton.BerryUtil;
 import com.xinglan.webdavserver.utilities.CustomResultReceiver;
 import com.xinglan.webdavserver.utilities.Net;
+
+import org.apache.commons.io.IOUtils;
+
 import java.util.HashMap;
 import java.util.List;
-import org.apache.commons.io.IOUtils;
 
 public class Helper {
     public static BerryUtil StartServer(Context context, Class<?> pThis) throws Exception {
         SecurityManager nullSecurityManager;
         BerryUtil server = null;
         List<String> addresses = Net.getIpAddress(context, Prefs.getInterfaces(context));
-        if (addresses.size() > 0) {
+        if (!addresses.isEmpty()) {
             String address = addresses.get(0);
             int port = Prefs.getPort(context);
             String userName = Prefs.getUserName(context);
@@ -37,16 +41,16 @@ public class Helper {
             }
             server.startBerry(port, homeDir, nullSecurityManager);
             String ipDetail = "http://" + address + ":" + port;
-            String configurationString = String.valueOf(String.valueOf(context.getString(R.string.str_server_conf)) + IOUtils.LINE_SEPARATOR_UNIX) + "http://" + address + ":" + port + "\n\n";
+            String configurationString = context.getString(R.string.str_server_conf) + IOUtils.LINE_SEPARATOR_UNIX + "http://" + address + ":" + port + "\n\n";
             if (credentials) {
-                String configurationString2 = String.valueOf(configurationString) + context.getString(R.string.conf_home_directory) + " " + homeDir + IOUtils.LINE_SEPARATOR_UNIX;
+                String configurationString2 = configurationString + context.getString(R.string.conf_home_directory) + " " + homeDir + IOUtils.LINE_SEPARATOR_UNIX;
                 if (passwordEnabled) {
-                    configurationString = String.valueOf(String.valueOf(configurationString2) + context.getString(R.string.conf_username) + " " + userName + IOUtils.LINE_SEPARATOR_UNIX) + context.getString(R.string.conf_userpass) + " " + userPass;
+                    configurationString = configurationString2 + context.getString(R.string.conf_username) + " " + userName + IOUtils.LINE_SEPARATOR_UNIX + context.getString(R.string.conf_userpass) + " " + userPass;
                 } else {
-                    configurationString = String.valueOf(configurationString2) + context.getString(R.string.conf_password_disabled);
+                    configurationString = configurationString2 + context.getString(R.string.conf_password_disabled);
                 }
             }
-            Intent intent = new Intent(context, (Class<?>) WebdavService.class);
+            Intent intent = new Intent(context, WebdavService.class);
             intent.putExtra("className", pThis.getName());
             intent.putExtra("Data", configurationString);
             intent.putExtra("WakeLock", lockMode);
@@ -66,7 +70,7 @@ public class Helper {
 
     public static boolean StartService(Context context, Class<?> pThis, CustomResultReceiver receiver, String updateWidgetAction, boolean startedFromWidget) throws Exception {
         List<String> addresses = Net.getIpAddress(context, Prefs.getInterfaces(context));
-        if (addresses.size() > 0) {
+        if (!addresses.isEmpty()) {
             String address = addresses.get(0);
             int port = Prefs.getPort(context);
             String userName = Prefs.getUserName(context);
@@ -77,16 +81,16 @@ public class Helper {
             boolean foreground = Prefs.getForeground(context);
             boolean credentials = Prefs.getShowCredentials(context);
             String ipDetail = "http://" + address + ":" + port;
-            String configurationString = String.valueOf(String.valueOf(context.getString(R.string.str_server_conf)) + IOUtils.LINE_SEPARATOR_UNIX) + "http://" + address + ":" + port + "\n\n";
+            String configurationString = context.getString(R.string.str_server_conf) + IOUtils.LINE_SEPARATOR_UNIX + "http://" + address + ":" + port + "\n\n";
             if (credentials) {
-                String configurationString2 = String.valueOf(configurationString) + context.getString(R.string.conf_home_directory) + " " + homeDir + IOUtils.LINE_SEPARATOR_UNIX;
+                String configurationString2 = configurationString + context.getString(R.string.conf_home_directory) + " " + homeDir + IOUtils.LINE_SEPARATOR_UNIX;
                 if (passwordEnabled) {
-                    configurationString = String.valueOf(String.valueOf(configurationString2) + context.getString(R.string.conf_username) + " " + userName + IOUtils.LINE_SEPARATOR_UNIX) + context.getString(R.string.conf_userpass) + " " + userPass;
+                    configurationString = configurationString2 + context.getString(R.string.conf_username) + " " + userName + IOUtils.LINE_SEPARATOR_UNIX + context.getString(R.string.conf_userpass) + " " + userPass;
                 } else {
-                    configurationString = String.valueOf(configurationString2) + context.getString(R.string.conf_password_disabled);
+                    configurationString = configurationString2 + context.getString(R.string.conf_password_disabled);
                 }
             }
-            Intent intent = new Intent(context, (Class<?>) WebdavService.class);
+            Intent intent = new Intent(context, WebdavService.class);
             intent.putExtra("className", pThis.getName());
             intent.putExtra("Data", configurationString);
             intent.putExtra("WakeLock", lockMode);

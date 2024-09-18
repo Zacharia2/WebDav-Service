@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:id="@+id/aboutParent"
-    android:background="@drawable/bg_gradient"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_background"
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:weightSum="1">
+
             <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
                 android:id="@+id/aboutTextView1"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="@string/app_name"/>
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_gravity="center"
                 android:gravity="center"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/aboutTextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,11 +35,11 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="3dp"
-                android:text="@string/version"/>
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold"
                 android:gravity="center"
+                android:text="@string/version"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
                 android:id="@+id/aboutTextView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,11 +47,12 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="3dp"
-                android:text="@string/userMessage"/>
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textStyle="bold"
                 android:gravity="center"
+                android:text="@string/userMessage"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/aboutThanksTranslate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,10 +60,12 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="3dp"
-                android:text="@string/thanksTo"/>
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:gravity="center"
+                android:text="@string/thanksTo"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/aboutTextView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,17 +73,20 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="3dp"
-                android:text="@string/warning"/>
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:gravity="center"
+                android:text="@string/warning"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
                 android:id="@+id/aboutApacheLicense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="3dp"/>
+                android:layout_marginBottom="3dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

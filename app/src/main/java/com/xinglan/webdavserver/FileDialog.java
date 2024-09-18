@@ -2,6 +2,7 @@ package com.xinglan.webdavserver;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -55,7 +56,7 @@ public class FileDialog extends ListActivity {
         setContentView(R.layout.file_dialog_main);
         this.myPath = (TextView) findViewById(R.id.path);
         this.mFileName = (EditText) findViewById(R.id.fdEditTextFile);
-        this.inputManager = (InputMethodManager) getSystemService("input_method");
+        this.inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         this.selectButton = (Button) findViewById(R.id.fdButtonSelect);
         this.selectButton.setEnabled(false);
         this.selectButton.setOnClickListener(new View.OnClickListener() { 
@@ -86,7 +87,7 @@ public class FileDialog extends ListActivity {
         }
         this.layoutSelect = (LinearLayout) findViewById(R.id.fdLinearLayoutSelect);
         this.layoutCreate = (LinearLayout) findViewById(R.id.fdLinearLayoutCreate);
-        this.layoutCreate.setVisibility(8);
+        this.layoutCreate.setVisibility(View.GONE);
         Button cancelButton = (Button) findViewById(R.id.fdButtonCancel);
         cancelButton.setOnClickListener(new View.OnClickListener() { 
             @Override // android.view.View.OnClickListener
@@ -165,10 +166,10 @@ public class FileDialog extends ListActivity {
         this.myPath.setText(((Object) getText(R.string.location)) + ": " + this.currentPath);
         if (!this.currentPath.equals("/")) {
             item.add("/");
-            addItem("/", R.drawable.folder);
+            addItem("/", R.mipmap.folder);
             this.path.add("/");
             item.add("../");
-            addItem("../", R.drawable.folder);
+            addItem("../", R.mipmap.folder);
             this.path.add(f.getParent());
             this.parentPath = f.getParent();
         }
@@ -215,7 +216,7 @@ public class FileDialog extends ListActivity {
         this.path.addAll(filesPathMap.tailMap("").values());
         SimpleAdapter fileList = new SimpleAdapter(this, this.mList, R.layout.file_dialog_row, new String[]{ITEM_KEY, ITEM_IMAGE}, new int[]{R.id.fdrowtext, R.id.fdrowimage});
         for (String dir : dirsMap.tailMap("").values()) {
-            addItem(dir, R.drawable.folder);
+            addItem(dir, R.mipmap.folder);
         }
         Iterator<String> it = filesMap.tailMap("").values().iterator();
         while (it.hasNext()) {
@@ -265,9 +266,9 @@ public class FileDialog extends ListActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == 4) {
             this.selectButton.setEnabled(false);
-            if (this.layoutCreate.getVisibility() == 0) {
-                this.layoutCreate.setVisibility(8);
-                this.layoutSelect.setVisibility(0);
+            if (this.layoutCreate.getVisibility() == View.VISIBLE) {
+                this.layoutCreate.setVisibility(View.GONE);
+                this.layoutSelect.setVisibility(View.VISIBLE);
                 this.selectButton.setEnabled(this.canSelectDir);
                 return true;
             }
@@ -278,16 +279,16 @@ public class FileDialog extends ListActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setCreateVisible(View v) {
-        this.layoutCreate.setVisibility(0);
-        this.layoutSelect.setVisibility(8);
+        this.layoutCreate.setVisibility(View.VISIBLE);
+        this.layoutSelect.setVisibility(View.GONE);
         this.inputManager.showSoftInputFromInputMethod(this.mFileName.getWindowToken(), 2);
         this.selectButton.setEnabled(false);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setSelectVisible(View v) {
-        this.layoutCreate.setVisibility(8);
-        this.layoutSelect.setVisibility(0);
+        this.layoutCreate.setVisibility(View.GONE);
+        this.layoutSelect.setVisibility(View.VISIBLE);
         this.inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
         this.selectButton.setEnabled(false);
     }

@@ -1,7 +1,6 @@
 package com.xinglan.webdavserver.utilities;
 
 import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class Root {
     public static boolean SuAvailable() {
@@ -31,8 +30,6 @@ public class Root {
             } catch (InterruptedException e) {
                 return false;
             }
-        } catch (IOException e2) {
-            return false;
         } catch (Exception e3) {
             return false;
         }
