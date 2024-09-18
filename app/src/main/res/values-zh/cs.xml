@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <c name="__res_0x17010000" parent="@string/app_name_file_dialog">
+        <item>File dialog</item>
+        <item>文件对话框</item>
+    </c>
+    <c name="__res_0x17010001" parent="@string/location">
+        <item>Location</item>
+        <item>位置</item>
+    </c>
+    <c name="__res_0x17010002" parent="@string/cant_read_folder">
+        <item>folder can&apos;t be read!</item>
+        <item>无法读取文件夹！</item>
+    </c>
+    <c name="__res_0x17010003" parent="@string/cant_create_folder">
+        <item>folder can&apos;t be created!</item>
+        <item>无法创建文件夹！</item>
+    </c>
+    <c name="__res_0x17010004" parent="@string/nnew">
+        <item>New</item>
+        <item>新的</item>
+    </c>
+    <c name="__res_0x17010005" parent="@string/select">
+        <item>Select</item>
+        <item>选择</item>
+    </c>
+    <c name="__res_0x17010006" parent="@string/file_name">
+        <item>Name:</item>
+        <item>姓名：</item>
+    </c>
+    <c name="__res_0x17010007" parent="@string/cancel">
+        <item>Cancel</item>
+        <item>取消</item>
+    </c>
+    <c name="__res_0x17010008" parent="@string/create">
+        <item>Save</item>
+        <item>保存</item>
+    </c>
+    <c name="__res_0x17010009" parent="@string/no_data">
+        <item>No Data</item>
+        <item>没有数据</item>
+    </c>
+    <c name="__res_0x1701000a" parent="@string/err">
+        <item>Error</item>
+        <item>错误</item>
+    </c>
+    <c name="__res_0x1701000b" parent="@string/app_name">
+        <item>WebDAV 服务器 Pro</item>
+        <item>WebDAV Pro</item>
+    </c>
+    <c name="__res_0x1701000c" parent="@string/str_start">
+        <item>Press button to start WebDAV server</item>
+        <item> </item>
+    </c>
+    <c name="__res_0x1701000d" parent="@string/str_stop">
+        <item>Press button to stop WebDAV server</item>
+        <item> </item>
+    </c>
+    <c name="__res_0x1701000e" parent="@string/str_server_conf">
+        <item>WebDAV server available on:</item>
+        <item> </item>
+    </c>
+    <c name="__res_0x1701000f" parent="@string/server">
+        <item>Server</item>
+        <item>服务器</item>
+    </c>
+    <c name="__res_0x17010010" parent="@string/about">
+        <item>About</item>
+        <item>关于</item>
+    </c>
+    <c name="__res_0x17010011" parent="@string/warning">
+        <item>Libraries used by this program:\nMilton WebDAV v1.7.2 and Berry web server v1.5. Apache2 License.\nAndroid viewflow pakerfeldt (01/Nov/2011). Apache2 License.</item>
+        <item>此程序使用的库：\nMilton webdav1.7.2和Berry web服务器v1.5。Apache2许可证。\nAndroid viewflow pakerfeldt（2011年11月1日）。Apache2许可证。</item>
+    </c>
+    <c name="__res_0x17010012" parent="@string/userMessage">
+        <item>Thanks for using my application. Please rate and comment or email me theolivetreesoftware@gmail.com with your suggestions to make it better</item>
+        <item> </item>
+    </c>
+    <c name="__res_0x17010013" parent="@string/thanksTo">
+        <item>Special thanks to: Beatriz Vera, Peter Ulrich, Gabor Fodor, Manuela Merino García and Anna Rainieri</item>
+        <item> </item>
+    </c>
+    <c name="__res_0x17010014" parent="@string/ok">
+        <item>OK</item>
+        <item>好的</item>
+    </c>
+    <c name="__res_0x17010015" parent="@string/notConnect">
+        <item>Please connect to a network and check network interface settings before running the server</item>
+        <item>运行服务器之前，请连接到网络并检查网络接口设置</item>
+    </c>
+    <c name="__res_0x17010016" parent="@string/errorRunServer">
+        <item>Error while running server. Probably configuration is wrong, try to restart it.</item>
+        <item>运行服务器时出错。可能配置错误，请尝试重新启动。</item>
+    </c>
+    <c name="__res_0x17010017" parent="@string/service_started">
+        <item>WebDAV server started.</item>
+        <item>WebDAV服务器已启动。</item>
+    </c>
+    <c name="__res_0x17010018" parent="@string/notification_started_title">
+        <item>WebDAV server</item>
+        <item>WebDAV服务器</item>
+    </c>
+    <c name="__res_0x17010019" parent="@string/notification_started_text">
+        <item>WebDAV server started.</item>
+        <item>WebDAV服务器已启动。</item>
+    </c>
+    <c name="__res_0x1701001a" parent="@string/conf_username">
+        <item>Username:</item>
+        <item>用户名：</item>
+    </c>
+    <c name="__res_0x1701001b" parent="@string/conf_userpass">
+        <item>Password:</item>
+        <item>密码：</item>
+    </c>
+    <c name="__res_0x1701001c" parent="@string/conf_home_directory">
+        <item>Home directory:</item>
+        <item>主目录：</item>
+    </c>
+    <c name="__res_0x1701001d" parent="@string/conf_password_disabled">
+        <item>Password disabled.</item>
+        <item>密码已禁用。</item>
+    </c>
+    <c name="__res_0x1701001e" parent="@string/menu_preference">
+        <item>Settings</item>
+        <item>设置</item>
+    </c>
+    <c name="__res_0x1701001f" parent="@string/pref_port_title">
+        <item>Port</item>
+        <item>端口</item>
+    </c>
+    <c name="__res_0x17010020" parent="@string/pref_port_message">
+        <item>Port used by WebDAV server</item>
+        <item>WebDAV服务器使用的端口</item>
+    </c>
+    <c name="__res_0x17010021" parent="@string/pref_port_summary">
+        <item>Port used by WebDAV server</item>
+        <item>WebDAV服务器使用的端口</item>
+    </c>
+    <c name="__res_0x17010022" parent="@string/pref_password_title">
+        <item>Use password</item>
+        <item>使用密码</item>
+    </c>
+    <c name="__res_0x17010023" parent="@string/pref_password_summary">
+        <item>Username and password needed to connect to server</item>
+        <item>连接到服务器所需的用户名和密码</item>
+    </c>
+    <c name="__res_0x17010024" parent="@string/pref_username_title">
+        <item>User name</item>
+        <item>用户名</item>
+    </c>
+    <c name="__res_0x17010025" parent="@string/pref_username_message">
+        <item>User name</item>
+        <item>用户名</item>
+    </c>
+    <c name="__res_0x17010026" parent="@string/pref_username_summary">
+        <item>User name</item>
+        <item>用户名</item>
+    </c>
+    <c name="__res_0x17010027" parent="@string/pref_userpass_title">
+        <item>User password</item>
+        <item>用户密码</item>
+    </c>
+    <c name="__res_0x17010028" parent="@string/pref_userpass_message">
+        <item>Enter user password</item>
+        <item>输入用户密码</item>
+    </c>
+    <c name="__res_0x17010029" parent="@string/pref_userpass_summary">
+        <item>User password</item>
+        <item>用户密码</item>
+    </c>
+    <c name="__res_0x1701002a" parent="@string/pref_homedir_title">
+        <item>Home directory</item>
+        <item>主目录</item>
+    </c>
+    <c name="__res_0x1701002b" parent="@string/pref_homedir_message">
+        <item>Select home directory used by WebDAV server</item>
+        <item>选择WebDAV服务器使用的主目录</item>
+    </c>
+    <c name="__res_0x1701002c" parent="@string/pref_homedir_summary">
+        <item>Home directory used by WebDAV server</item>
+        <item>WebDAV服务器使用的主目录</item>
+    </c>
+    <c name="__res_0x1701002d" parent="@string/pref_interfaces_title">
+        <item>Network interface</item>
+        <item>网络接口</item>
+    </c>
+    <c name="__res_0x1701002e" parent="@string/pref_interfaces_message">
+        <item>Select network interface where server listens for connections</item>
+        <item>选择服务器侦听连接的网络接口</item>
+    </c>
+    <c name="__res_0x1701002f" parent="@string/pref_interfaces_summary">
+        <item>Network interface where server listens for clients to connect</item>
+        <item>服务器监听客户端连接的网络接口</item>
+    </c>
+    <c name="__res_0x17010030" parent="@string/pref_resetprefs_title">
+        <item>Reset configuration</item>
+        <item>重置配置</item>
+    </c>
+    <c name="__res_0x17010031" parent="@string/pref_resetprefs_summary">
+        <item>Click to reset application configuration to its initial values</item>
+        <item>单击可将应用程序配置重置为其初始值</item>
+    </c>
+    <c name="__res_0x17010032" parent="@string/pref_lock_title">
+        <item>Lock mode</item>
+        <item>锁定模式</item>
+    </c>
+    <c name="__res_0x17010033" parent="@string/pref_lock_message">
+        <item>Lock used to keep data connection alive while server is running</item>
+        <item>服务器运行时用于保持数据连接活动的锁</item>
+    </c>
+    <c name="__res_0x17010034" parent="@string/pref_lock_summary">
+        <item>Lock used to keep data connection alive while server is running</item>
+        <item>服务器运行时用于保持数据连接活动的锁</item>
+    </c>
+    <c name="__res_0x17010035" parent="@string/pref_foreground_title">
+        <item>High priority service</item>
+        <item>高优先级服务</item>
+    </c>
+    <c name="__res_0x17010036" parent="@string/pref_foreground_message">
+        <item>Run as foreground service</item>
+        <item>作为前台服务运行</item>
+    </c>
+    <c name="__res_0x17010037" parent="@string/pref_foreground_summary">
+        <item>Service will not be killed under low memory conditions</item>
+        <item>在内存不足的情况下不会终止服务</item>
+    </c>
+    <c name="__res_0x17010038" parent="@string/pref_customfolder_title">
+        <item>Custom folder</item>
+        <item>自定义文件夹</item>
+    </c>
+    <c name="__res_0x17010039" parent="@string/pref_showcredentials_title">
+        <item>Show server details</item>
+        <item>显示服务器详细信息</item>
+    </c>
+    <c name="__res_0x1701003a" parent="@string/pref_showcredentials_summary">
+        <item>Show username, password, home folder, etc. in main screen</item>
+        <item>在主屏幕中显示用户名、密码、主文件夹等</item>
+    </c>
+    <c name="__res_0x1701003b" parent="@array/home_dir">
+        <item>Custom folder</item>
+        <item>自定义文件夹</item>
+    </c>
+    <c name="__res_0x1701003c" parent="@array/home_dir_api8">
+        <item>Custom folder</item>
+        <item>自定义文件夹</item>
+    </c>
+    <c name="__res_0x1701003d" parent="@array/home_dir_api19">
+        <item>Custom folder</item>
+        <item>自定义文件夹</item>
+    </c>
+    <c name="__res_0x1701003e" parent="@array/home_dir_api19">
+        <item>Ext. SdCard</item>
+        <item>外部SD卡</item>
+    </c>
+    <c name="__res_0x1701003f" parent="@array/interfaces">
+        <item>Ethernet</item>
+        <item>以太网</item>
+    </c>
+    <c name="__res_0x17010040" parent="@array/interfaces">
+        <item>Mobile network</item>
+        <item>移动网络</item>
+    </c>
+    <c name="__res_0x17010041" parent="@array/interfaces">
+        <item>Bluetooth PAN</item>
+        <item>蓝牙PAN</item>
+    </c>
+    <c name="__res_0x17010042" parent="@array/interfaces">
+        <item>Loopback (127.0.0.1)</item>
+        <item>环回（127.0.0.1）</item>
+    </c>
+    <c name="__res_0x17010043" parent="@array/lock">
+        <item>SCREEN_DIM_WAKE_LOCK</item>
+        <item>屏幕-暗-醒-锁</item>
+    </c>
+    <c name="__res_0x17010044" parent="@array/lock">
+        <item>WIFI_MODE_FULL</item>
+        <item>WIFI模式\\u已满</item>
+    </c>
+    <c name="__res_0x17010045" parent="@array/lock_api12">
+        <item>SCREEN_DIM_WAKE_LOCK</item>
+        <item>屏幕-暗-醒-锁</item>
+    </c>
+    <c name="__res_0x17010046" parent="@array/lock_api12">
+        <item>WIFI_MODE_FULL</item>
+        <item>WIFI模式\\u已满</item>
+    </c>
+    <c name="__res_0x17010047" parent="@array/lock_api12">
+        <item>WIFI_MODE_FULL_HIGH_PERF</item>
+        <item>WIFI模式\\u完整\\ u高性能</item>
+    </c>
+</resources>

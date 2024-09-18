@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="home_dir_values">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+    </array>
+    <array name="home_dir">
+        <item>Root (/)</item>
+        <item>SdCard</item>
+        <item>自定义文件夹</item>
+    </array>
+    <array name="home_dir_values_api8">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </array>
+    <array name="home_dir_api8">
+        <item>Root (/)</item>
+        <item>SdCard</item>
+        <item>DCIM</item>
+        <item>自定义文件夹</item>
+    </array>
+    <array name="home_dir_values_api19">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </array>
+    <array name="home_dir_api19">
+        <item>Root (/)</item>
+        <item>SdCard</item>
+        <item>DCIM</item>
+        <item>自定义文件夹</item>
+        <item>外部SD卡</item>
+    </array>
+    <array name="interfaces_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+    </array>
+    <array name="interfaces">
+        <item>WIFI</item>
+        <item>以太网</item>
+        <item>移动网络</item>
+        <item>蓝牙PAN</item>
+        <item>环回（127.0.0.1）</item>
+    </array>
+    <array name="lock_values">
+        <item>0</item>
+        <item>1</item>
+    </array>
+    <array name="lock">
+        <item>屏幕-暗-醒-锁</item>
+        <item>WIFI模式\\u已满</item>
+    </array>
+    <array name="lock_values_api12">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
+    <array name="lock_api12">
+        <item>屏幕-暗-醒-锁</item>
+        <item>WIFI模式\\u已满</item>
+        <item>WIFI模式\\u完整\\ u高性能</item>
+    </array>
+</resources>
