@@ -217,7 +217,6 @@ public class TitleFlowIndicator extends TextView implements FlowIndicator {
         }
 
         // Draw the footer line
-        // Draw the footer line
         path = new Path();
         int coordY = getHeight() - 1;
         coordY -= (int) ((footerLineHeight % 2 == 1) ? footerLineHeight / 2 : footerLineHeight / 2 - 1);

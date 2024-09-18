@@ -24,6 +24,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.xinglan.webdavserver.viewflow.TitleProvider;
+
 public class TitleViewFlowExample extends Activity {
 
     private ViewFlow viewFlow;
@@ -33,11 +42,11 @@ public class TitleViewFlowExample extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.title_title);
-        setContentView(R.layout.circle_layout);
+        setContentView(R.layout.title_layout);
 
         viewFlow = findViewById(R.id.view_flow);
         AndroidVersionAdapter adapter = new AndroidVersionAdapter(this);
-        viewFlow.setAdapter(adapter,0);
+        viewFlow.setAdapter(adapter,1);
         TitleFlowIndicator indicator = findViewById(R.id.view_flow_indic);
         indicator.setTitleProvider(adapter);
         viewFlow.setFlowIndicator(indicator);
@@ -49,6 +58,51 @@ public class TitleViewFlowExample extends Activity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         viewFlow.onConfigurationChanged(newConfig);
+    }
+
+}
+
+public class AndroidVersionAdapter extends BaseAdapter implements TitleProvider {
+
+    private final LayoutInflater mInflater;
+
+    private static final String[] versions = {"1.5", "1.6", "2.1", "2.2", "2.3", "3.0", "x.y"};
+    private static final String[] names = {"Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb", "IceCream Sandwich"};
+
+    public AndroidVersionAdapter(Context context) {
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    @Override
+    public int getCount() {
+        return names.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.flow_item, null);
+        }
+        ((TextView) convertView.findViewById(R.id.textLabel)).setText(versions[position]);
+        return convertView;
+    }
+
+    /* (non-Javadoc)
+     * @see com.xinglan.webdavserver.viewflow.TitleProvider#getTitle(int)
+     */
+    @Override
+    public String getTitle(int position) {
+        return names[position];
     }
 
 }
