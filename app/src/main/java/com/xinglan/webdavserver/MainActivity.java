@@ -1,5 +1,6 @@
-package com.xinglan.webdavserver.activities;
+package com.xinglan.webdavserver;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -17,21 +18,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.xinglan.webdavserver.R;
+import com.xinglan.webdavserver.activities.AboutActivity;
+import com.xinglan.webdavserver.activities.PrefsActivity;
+import com.xinglan.webdavserver.activities.WebdavAdapter;
+import com.xinglan.webdavserver.activities.WebdavServerApp;
+import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
+import com.xinglan.webdavserver.intent.WidgetWebDavReceiver;
 import com.xinglan.webdavserver.utils.CustomResultReceiver;
 import com.xinglan.webdavserver.utils.Net;
-import com.xinglan.webdavserver.utils.ServiceServer;
 import com.xinglan.webdavserver.intent.WebdavService;
+import com.xinglan.webdavserver.widget.viewflow.TitleFlowIndicator;
 import com.xinglan.webdavserver.widget.viewflow.ViewFlow;
 
-public abstract class MainActivity extends AboutActivity implements CustomResultReceiver.Receiver {
-    private CustomResultReceiver mReceiver;
-    protected ViewFlow viewFlow = null;
+public class MainActivity extends AboutActivity implements CustomResultReceiver.Receiver {
     private final ServiceConnection mConnection = new ServiceConnection() {
         @Override // android.content.ServiceConnection
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -44,8 +49,12 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
             MainActivity.this.setViewsStopped();
         }
     };
+    protected ViewFlow viewFlow = null;
+    private CustomResultReceiver mReceiver;
 
-    protected abstract String getUpdateWidgetAction();
+    protected String getUpdateWidgetAction() {
+        return WidgetWebDavReceiver.UpdateStatusAction;
+    }
 
     @Override // android.app.Activity
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +65,17 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
         if (startFromWidgetError) {
             Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.notConnect, null, null);
         }
+        setContentView(R.layout.title_layout_example);
+        BerryUtil.init();
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout bg = findViewById(R.id.titleParent);
+        bg.getBackground().setDither(true);
+        this.viewFlow = findViewById(R.id.view_flow);
+        WebdavAdapter adapter = new WebdavAdapter(this, R.layout.main_common, R.layout.about);
+        this.viewFlow.setAdapter(adapter);
+        TitleFlowIndicator indicator = findViewById(R.id.view_flow_indic);
+        indicator.setTitleProvider(adapter);
+        this.viewFlow.setFlowIndicator(indicator);
+        postOnCreate(savedInstanceState);
     }
 
     @Override // com.xinglan.webdavserver.webdavserverlib.AboutActivity
@@ -187,7 +207,7 @@ public abstract class MainActivity extends AboutActivity implements CustomResult
         setViewsStopped();
         Intent intent = new Intent(this, WebdavService.class);
         stopService(intent);
-        ServiceServer.updateWidgets(getApplicationContext(), updateWidgetAction, false, true);
+        WebdavService.updateWidgets(getApplicationContext(), updateWidgetAction, false, true);
     }
 
 

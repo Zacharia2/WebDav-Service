@@ -4,16 +4,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.xinglan.webdavserver.MainActivity;
 import com.xinglan.webdavserver.activities.WebdavServerApp;
-import com.xinglan.webdavserver.activities.WebdavServerActivity;
 import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
-import com.xinglan.webdavserver.utils.ServiceServer;
 
 public class WebDavServerReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        onReceiveImplementation(context, intent, WebdavServerActivity.class, WidgetWebDavReceiver.UpdateStatusAction);
+        onReceiveImplementation(context, intent, MainActivity.class, WidgetWebDavReceiver.UpdateStatusAction);
         onReceiveImplementation(context, intent, WidgetWebDavReceiver.UpdateStatusAction);
     }
 
@@ -27,7 +26,7 @@ public class WebDavServerReceiver extends BroadcastReceiver {
                     setResultCode(result ? 0 : 3);
                 }
                 if (!result) {
-                    ServiceServer.updateWidgets(context, widgetUpdateAction, startedFromWidget, false);
+                    WebdavService.updateWidgets(context, widgetUpdateAction, startedFromWidget, false);
                     return;
                 }
                 return;
@@ -51,7 +50,7 @@ public class WebDavServerReceiver extends BroadcastReceiver {
                     server.stopBerry();
                 }
                 context.stopService(intentServer);
-                ServiceServer.updateWidgets(context, widgetUpdateAction, false, true);
+                WebdavService.updateWidgets(context, widgetUpdateAction, false, true);
                 if (isOrderedBroadcast()) {
                     setResultCode(0);
                     return;

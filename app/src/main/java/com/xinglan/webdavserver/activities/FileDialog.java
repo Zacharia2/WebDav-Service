@@ -265,16 +265,14 @@ public class FileDialog extends ListActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setCreateVisible(View v) {
+    private void setCreateVisible(View v) {
         this.layoutCreate.setVisibility(View.VISIBLE);
         this.layoutSelect.setVisibility(View.GONE);
         this.inputManager.showSoftInputFromInputMethod(this.mFileName.getWindowToken(), 2);
         this.selectButton.setEnabled(false);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public void setSelectVisible(View v) {
+    private void setSelectVisible(View v) {
         this.layoutCreate.setVisibility(View.GONE);
         this.layoutSelect.setVisibility(View.VISIBLE);
         this.inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
