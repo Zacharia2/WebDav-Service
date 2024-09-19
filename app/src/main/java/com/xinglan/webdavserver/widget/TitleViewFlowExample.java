@@ -41,7 +41,7 @@ public class TitleViewFlowExample extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.title_title);
-        setContentView(R.layout.title_layout_example);
+        setContentView(R.layout.title_layout);
 
         viewFlow = findViewById(R.id.view_flow);
         AndroidVersionAdapter adapter = new AndroidVersionAdapter(this);

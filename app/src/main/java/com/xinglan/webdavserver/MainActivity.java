@@ -29,10 +29,10 @@ import com.xinglan.webdavserver.activities.WebdavAdapter;
 import com.xinglan.webdavserver.activities.WebdavServerApp;
 import com.xinglan.webdavserver.corefunc.BerryUtil;
 import com.xinglan.webdavserver.corefunc.Helper;
+import com.xinglan.webdavserver.intent.WebdavService;
 import com.xinglan.webdavserver.intent.WidgetWebDavReceiver;
 import com.xinglan.webdavserver.utils.CustomResultReceiver;
 import com.xinglan.webdavserver.utils.Net;
-import com.xinglan.webdavserver.intent.WebdavService;
 import com.xinglan.webdavserver.widget.viewflow.TitleFlowIndicator;
 import com.xinglan.webdavserver.widget.viewflow.ViewFlow;
 
@@ -65,7 +65,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         if (startFromWidgetError) {
             Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.notConnect, null, null);
         }
-        setContentView(R.layout.title_layout_example);
+        setContentView(R.layout.title_layout);
         BerryUtil.init();
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout bg = findViewById(R.id.titleParent);
         bg.getBackground().setDither(true);

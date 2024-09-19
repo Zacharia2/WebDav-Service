@@ -20,7 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:clipPadding="5dp"
-            app:customTypeface="fonts/Antic.ttf"
             app:footerColor="#ffffc445"
             app:footerLineHeight="2dp"
             app:footerTriangleHeight="10dp"
