@@ -10,7 +10,7 @@ public class WidgetWebDavProvider extends WidgetUtilProvider {
     @Override // android.appwidget.AppWidgetProvider
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         BerryUtil server = WebdavService.getServer();
-        int image = server != null ? R.mipmap.on : R.mipmap.off;
+        int image = server != null ? R.drawable.on : R.drawable.off;
         onUpdateImplementation(context, appWidgetManager, appWidgetIds, WidgetWebDavProvider.class, image, WidgetWebDavReceiver.ChangeStatusAction);
     }
 }

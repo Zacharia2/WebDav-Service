@@ -118,7 +118,7 @@ public class FileDialog extends ListActivity {
                     return;
                 }
                 // android.content.DialogInterface.OnClickListener
-                new AlertDialog.Builder(FileDialog.this).setIcon(R.drawable.icon).setTitle("[" + FileDialog.this.mFileName.getText() + "] " + FileDialog.this.getText(R.string.cant_create_folder)).setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {
+                new AlertDialog.Builder(FileDialog.this).setIcon(R.mipmap.icon).setTitle("[" + FileDialog.this.mFileName.getText() + "] " + FileDialog.this.getText(R.string.cant_create_folder)).setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {
                 }).show();
             }
         });
@@ -241,7 +241,7 @@ public class FileDialog extends ListActivity {
                 return;
             }
             // android.content.DialogInterface.OnClickListener
-            new AlertDialog.Builder(this).setIcon(R.drawable.icon).setTitle("[" + file.getName() + "] " + getText(R.string.cant_read_folder)).setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {
+            new AlertDialog.Builder(this).setIcon(R.mipmap.icon).setTitle("[" + file.getName() + "] " + getText(R.string.cant_read_folder)).setPositiveButton(ExternallyRolledFileAppender.OK, (dialog, which) -> {
             }).show();
             return;
         }

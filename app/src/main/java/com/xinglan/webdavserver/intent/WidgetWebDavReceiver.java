@@ -15,11 +15,11 @@ public class WidgetWebDavReceiver extends WidgetUtilReceiver {
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        int image = R.mipmap.on;
+        int image = R.drawable.on;
         BerryUtil server = WebdavService.getServer();
         if (Objects.equals(intent.getAction(), ChangeStatusAction)) {
             if (server != null) {
-                image = R.mipmap.off;
+                image = R.drawable.off;
             }
             String sendAction = server != null ? "com.xinglan.webdavserver.StopWebDavServerPro" : "com.xinglan.webdavserver.StartWebDavServerPro";
             onWidgetClick(context, WidgetWebDavProvider.class, ChangeStatusAction, UpdateStatusAction, image, sendAction);
@@ -27,7 +27,7 @@ public class WidgetWebDavReceiver extends WidgetUtilReceiver {
         }
         if (Objects.equals(intent.getAction(), UpdateStatusAction)) {
             if (server == null) {
-                image = R.mipmap.off;
+                image = R.drawable.off;
             }
             onWidgetUpdate(context, WidgetWebDavProvider.class, ChangeStatusAction, image);
             boolean startedFromWidget = intent.getBooleanExtra("startedFromWidget", false);

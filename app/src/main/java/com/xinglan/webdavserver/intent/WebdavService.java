@@ -183,7 +183,7 @@ public class WebdavService extends Service {
         if (widgetUpdateAction != null) {
             updateWidgets(this, widgetUpdateAction, startedFromWidget, true);
         }
-        handleStart(intent, flags, startId, R.string.service_started, R.mipmap.on, R.string.notification_started_title, R.string.notification_started_text);
+        handleStart(intent, flags, startId, R.string.service_started, R.drawable.on, R.string.notification_started_title, R.string.notification_started_text);
         return Service.START_REDELIVER_INTENT;
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WebdavServer</string>
+    <string name="app_name">WebDav</string>
     <string name="hello" translatable="false">Hello World, ViewFlowExample!</string>
     <string name="title_title" translatable="false">TitleFlowIndicator</string>
     <string name="app_name_file_dialog">File dialog</string>

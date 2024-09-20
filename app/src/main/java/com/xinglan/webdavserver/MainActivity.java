@@ -1,6 +1,5 @@
 package com.xinglan.webdavserver;
 
-import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -56,7 +54,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         return WidgetWebDavReceiver.UpdateStatusAction;
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDefaultValues(false);
@@ -67,7 +65,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         }
         setContentView(R.layout.title_layout);
         BerryUtil.init();
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) LinearLayout bg = findViewById(R.id.titleParent);
+        LinearLayout bg = findViewById(R.id.titleParent);
         bg.getBackground().setDither(true);
         this.viewFlow = findViewById(R.id.view_flow);
         WebdavAdapter adapter = new WebdavAdapter(this, R.layout.main_common, R.layout.about);
@@ -83,12 +81,12 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         super.postOnCreate(savedInstanceState);
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onDestroy() {
         super.onDestroy();
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onStart() {
         super.onStart();
         this.mReceiver = new CustomResultReceiver(new Handler());
@@ -98,25 +96,25 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         }
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onStop() {
         super.onStop();
         unbindService(this.mConnection);
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onResume() {
         super.onResume();
         this.mReceiver.setReceiver(this);
     }
 
-    @Override // android.app.Activity
+    @Override
     public void onPause() {
         super.onPause();
         this.mReceiver.setReceiver(null);
     }
 
-    @Override // android.app.Activity, android.view.Window.Callback
+    @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         Window window = getWindow();
@@ -132,20 +130,19 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         }
     }
 
-    @Override // android.app.Activity, android.content.ComponentCallbacks
+    @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         this.viewFlow.onConfigurationChanged(newConfig);
     }
 
-    @Override // android.app.Activity
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
 
-    @Override // android.app.Activity
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.menu_preference) {
@@ -156,7 +153,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         return super.onOptionsItemSelected(item);
     }
 
-    @Override // android.app.Activity, android.view.KeyEvent.Callback
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode != 82) {
             return super.onKeyDown(keyCode, event);
@@ -165,7 +162,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         return true;
     }
 
-    @Override // android.app.Activity
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
@@ -175,7 +172,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         }
     }
 
-    @Override // com.xinglan.webdavserver.utilities.CustomResultReceiver.Receiver
+    @Override // CustomResultReceiver.Receiver
     public void onReceiveResult(int resultCode, Bundle resultData) {
         if (resultCode == 0) {
             Net.showAlert(this, R.string.ok, -1, R.string.app_name, R.string.errorRunServer, null, null);
@@ -216,7 +213,7 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         TextView textStartStop = findViewById(R.id.textView3);
         TextView text2 = findViewById(R.id.textView2);
         text2.setText(connectString);
-        button.setImageResource(R.mipmap.on);
+        button.setImageResource(R.drawable.on);
         textStartStop.setText(R.string.str_stop);
         text2.setVisibility(View.VISIBLE);
     }
@@ -225,7 +222,8 @@ public class MainActivity extends AboutActivity implements CustomResultReceiver.
         ImageView button = findViewById(R.id.imageView1);
         TextView textStartStop = findViewById(R.id.textView3);
         TextView text2 = findViewById(R.id.textView2);
-        button.setImageResource(R.mipmap.off);
+        button.setImageResource(R.drawable.off);
+        button.setScaleType(ImageView.ScaleType.FIT_XY);
         textStartStop.setText(R.string.str_start);
         text2.setVisibility(View.INVISIBLE);
     }
